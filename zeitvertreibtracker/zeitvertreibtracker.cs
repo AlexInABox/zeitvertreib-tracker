@@ -2,13 +2,13 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using zeitvertreibtracker.Events;
-using Server = Exiled.Events.Handlers.Server;
 
 namespace zeitvertreibtracker;
 
 public class zeitvertreibtracker : Plugin<Config, Translation>
 {
     private RoundStarted roundStarted;
+    private Dying dying;
     public override string Prefix => "zeitvertreibtracker";
     public override string Name => "zeitvertreibtracker";
     public override string Author => "AlexInABox";
@@ -23,7 +23,8 @@ public class zeitvertreibtracker : Plugin<Config, Translation>
         Instance = this;
         Log.Info("zeitvertreibtracker has been enabled!");
 
-        Server.RoundStarted += roundStarted.OnRoundStarted;
+        Exiled.Events.Handlers.Server.RoundStarted += roundStarted.OnRoundStarted;
+        Exiled.Events.Handlers.Player.Dying += dying.OnDying;
 
         base.OnEnabled();
     }
@@ -32,7 +33,8 @@ public class zeitvertreibtracker : Plugin<Config, Translation>
     {
         Log.Info("zeitvertreibtracker has been disabled!");
 
-        Server.RoundStarted -= roundStarted.OnRoundStarted;
+        Exiled.Events.Handlers.Server.RoundStarted -= roundStarted.OnRoundStarted;
+        Exiled.Events.Handlers.Player.Dying -= dying.OnDying;
 
         base.OnDisabled();
     }

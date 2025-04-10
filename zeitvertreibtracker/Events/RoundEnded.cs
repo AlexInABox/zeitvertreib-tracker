@@ -7,12 +7,17 @@ internal sealed class RoundEnded
 {
     public void OnRoundEnded()
     {
-        var currentMillis = GlobalVariables.Instance.GetCurrentMillis();
         foreach (var player in Player.List)
         {
             FillOutStatistics.Instance.EnsurePlayerExists(player.UserId);
-            FillOutStatistics.Instance.PlayerStatistics[player.UserId].Coins =
-                zeitvertreibtracker.Instance.Config.coinsOnRoundEndHuman;
+            
+            
+            FillOutStatistics.Instance.PlayerStatistics[player.UserId].PlayerLeaveTime = GlobalVariables.Instance.GetCurrentMillis();
+            if (!FillOutStatistics.Instance.PlayerStatistics[player.UserId].UserDiedThisRound)
+            {
+                FillOutStatistics.Instance.PlayerStatistics[player.UserId].Experience += zeitvertreibtracker.Instance.Config.xpForSurvivingTheEntireRound;
+            }
         }
+        FillOutStatistics.Instance.SubmitCollectedPlayerStatisticsToDatabase();
     }
 }

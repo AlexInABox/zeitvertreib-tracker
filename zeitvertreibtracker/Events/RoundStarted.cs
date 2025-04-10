@@ -9,7 +9,7 @@ internal sealed class RoundStarted
     {
         GlobalVariables.Instance.RoundStartTime = GlobalVariables.Instance.GetCurrentMillis();
         foreach (var player in Player.List)
-            FillOutStatistics.Instance.PlayerStatistics[player.UserId].GameStartTime
+            FillOutStatistics.Instance.PlayerStatistics[player.UserId].PlayerJoinTime
                 = GlobalVariables.Instance.GetCurrentMillis();
     }
 }

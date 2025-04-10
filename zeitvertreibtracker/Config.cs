@@ -6,16 +6,25 @@ namespace zeitvertreibtracker;
 /// <inheritdoc cref="IConfig" />
 public sealed class Config : IConfig
 {
-    [Description("Minimum round duration (in minutes) required for coin rewards to be granted.")]
-    public int minimumRoundDurationMinutes { get; set; } = 8;
+    [Description("XP to award for suriving the entire round without dying.")]
+    public int xpForSurvivingTheEntireRound { get; set; } = 5000;
 
-    [Description("Coins awarded at the end of a round as a human-class player.")]
-    public int coinsOnRoundEndHuman { get; set; } = 15;
+    [Description("XP to award the user for every 20 seconds of playtime.")]
+    public int xpPer20secondsPlaytime { get; set; } = 7;
 
-    [Description("Coins awarded at the end of a round as an SCP, typically higher due to increased difficulty.")]
-    public int coinsOnRoundEndSCP { get; set; } = 40;
+    [Description("XP to award the user for escaping.")]
+    public int xpForEscaping { get; set; } = 400;
 
-    /// <inheritdoc />
+    [Description("XP to award the user for killing a human as an SCP.")]
+    public int xpForKillingAHumanAsAnSCP { get; set; } = 200;
+
+    [Description("XP to award the user for killing a human as an human.")]
+    public int xpForKillingAHumanAsAnHuman { get; set; } = 300;
+    
+    [Description("XP to award the user for killing an SCP as an human.")]
+    public int xpForKillingAnSCPAsAHuman { get; set; } = 500;
+
+/// <inheritdoc />
     public bool IsEnabled { get; set; } = true;
 
     /// <inheritdoc />

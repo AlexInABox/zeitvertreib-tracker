@@ -46,6 +46,8 @@ public class PlayerStats
     public int PocketEscapes { get; set; } = 0;
     public int UsedAdrenaline { get; set; } = 0;
     public int Coins { get; set; } = 0;
-    public bool RoundStartedAsHuman { get; set; } = true;
-    public long GameStartTime { get; set; } = 9999999999999;
+    public long PlayerJoinTime { get; set; } = 9999999999999;
+    public long PlayerLeaveTime { get; set; } = 0;
+    public bool UserDiedThisRound { get; set; } = false;
+    public int Experience { get; set; } = 0;
 }
